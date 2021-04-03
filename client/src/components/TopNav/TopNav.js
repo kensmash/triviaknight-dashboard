@@ -3,13 +3,10 @@ import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "semantic-ui-react";
 //graphql
-import { useQuery, useMutation, useApolloClient } from "@apollo/react-hooks";
-import QUERY_CURRENTUSER from "../../apollo/queries/currentUser";
+import { useMutation, useApolloClient } from "@apollo/react-hooks";
 
 const TopNav = (props) => {
   const [activeItem, setActiveItem] = useState("");
-
-  const { data: { currentUser } = {} } = useQuery(QUERY_CURRENTUSER);
 
   const [logOut] = useMutation(LOGOUT_MUTATION);
 
@@ -24,74 +21,69 @@ const TopNav = (props) => {
   };
 
   return (
-    <>
-      <Menu inverted stackable>
-        <Menu.Item
-          as={Link}
-          to={"/"}
-          name="Trivia Knight"
-          active={activeItem === "home"}
-          onClick={handleItemClick}
-        />
+    <Menu inverted stackable>
+      <Menu.Item
+        as={Link}
+        to={"/"}
+        name="Trivia Knight"
+        active={activeItem === "home"}
+        onClick={handleItemClick}
+      />
 
-        <Menu.Menu position="right">
-          {currentUser && currentUser.isAdmin ? (
-            <>
-              <Menu.Item as={Link} to={"/admin"} name="dashboard" />
-              <Dropdown item text="Questions">
-                <Dropdown.Menu>
-                  <Dropdown.Item
-                    as={Link}
-                    to={"/admin/questions"}
-                    active={activeItem === "questions"}
-                  >
-                    All Questions
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item as={Link} to={"/admin/questions/new"}>
-                    New Question
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} to={"/admin/questions/reports"}>
-                    Question Reports
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Dropdown item text="Categories">
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to={"/admin/categories"}>
-                    Categories
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item as={Link} to={"/admin/categorytypes"}>
-                    Category Types
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} to={"/admin/categorygenres"}>
-                    Category Genres
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} to={"/admin/categorygroups"}>
-                    Category Groups
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+      <Menu.Menu position="right">
+        <Menu.Item as={Link} to={"/admin"} name="dashboard" />
+        <Dropdown item text="Questions">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              as={Link}
+              to={"/admin/questions"}
+              active={activeItem === "questions"}
+            >
+              All Questions
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item as={Link} to={"/admin/questions/new"}>
+              New Question
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to={"/admin/questions/reports"}>
+              Question Reports
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown item text="Categories">
+          <Dropdown.Menu>
+            <Dropdown.Item as={Link} to={"/admin/categories"}>
+              Categories
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item as={Link} to={"/admin/categorytypes"}>
+              Category Types
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to={"/admin/categorygenres"}>
+              Category Genres
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to={"/admin/categorygroups"}>
+              Category Groups
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-              <Dropdown item text="Games">
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to={"/admin/joustgames"}>
-                    Joust Games
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} to={"/admin/siegegames"}>
-                    Siege Games
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+        <Dropdown item text="Games">
+          <Dropdown.Menu>
+            <Dropdown.Item as={Link} to={"/admin/joustgames"}>
+              Joust Games
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to={"/admin/siegegames"}>
+              Siege Games
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-              <Menu.Item as={Link} to={"/admin/users"} name="Users" />
-            </>
-          ) : null}
-          {currentUser && <Menu.Item name="logout" onClick={logoutHandler} />}
-        </Menu.Menu>
-      </Menu>
-    </>
+        <Menu.Item as={Link} to={"/admin/users"} name="Users" />
+
+        <Menu.Item name="logout" onClick={logoutHandler} />
+      </Menu.Menu>
+    </Menu>
   );
 };
 
