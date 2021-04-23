@@ -5,7 +5,7 @@ import DeleteJoustGameModal from "./DeleteJoustGameModal";
 import format from "date-fns/format";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_JOUSTGAMEPAGE from "../../../apollo/queries/joustGamePage";
+import QUERY_JOUSTGAMEPAGE from "../../apollo/queries/joustGamePage";
 
 const GamesJoustList = () => {
   const [currentActivePage, setCurrentActivePage] = useState(1);

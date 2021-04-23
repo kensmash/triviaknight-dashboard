@@ -5,7 +5,7 @@ import DeleteSiegeGameModal from "./DeleteSiegeGameModal";
 import format from "date-fns/format";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_SIEGEGAMEPAGE from "../../../apollo/queries/siegeGamePage";
+import QUERY_SIEGEGAMEPAGE from "../../apollo/queries/siegeGamePage";
 
 const GamesSiegeList = () => {
   const [currentActivePage, setCurrentActivePage] = useState(1);

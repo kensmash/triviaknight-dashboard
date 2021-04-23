@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
 import { gql, useMutation } from "@apollo/client";
-import QUERY_SUPPORTREQUESTPAGE from "../../../apollo/queries/supportRequestPage";
+import QUERY_SUPPORTREQUESTPAGE from "../../apollo/queries/supportRequestPage";
 
 const DeleteSupportRequestModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);

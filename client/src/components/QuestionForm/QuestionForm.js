@@ -8,11 +8,11 @@ import QuestionPublishedStatus from "./helpers/QuestionPublishedStatus";
 import CategorySelect from "./helpers/CategorySelect";
 import QuestionType from "./helpers/QuestionType";
 import QuestionDifficulty from "./helpers/QuestionDifficulty";
-import FormErrorMessage from "../../FormMessage/FormErrorMessage";
-import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
+import FormErrorMessage from "../FormMessages/FormErrorMessage";
+import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
-import QUERY_CLIENTADDQUESTIONCRITERIA from "../../../apollo/queries/client-addQuestionCriteria";
+import QUERY_CLIENTADDQUESTIONCRITERIA from "../../apollo/queries/client-addQuestionCriteria";
 
 const QuestionForm = (props) => {
   const [questionSubmitted, setQuestionSubmitted] = useState(false);

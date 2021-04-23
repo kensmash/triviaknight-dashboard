@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormErrorMessage from "../../../../components/FormMessage/FormErrorMessage";
+import FormErrorMessage from "../../../components/FormMessage/FormErrorMessage";
 import { Grid, Icon, Button, Form, Checkbox } from "semantic-ui-react";
 
-const Answer = props => {
+const Answer = (props) => {
   const answerindex = props.answerindex || 0;
   return (
     <div className="answer">
@@ -30,7 +30,7 @@ const Answer = props => {
         name="answer"
         value={props.answer}
         placeholder="Enter Answer..."
-        onChange={event => props.answerChangedHandler(event, answerindex)}
+        onChange={(event) => props.answerChangedHandler(event, answerindex)}
       />
       <FormErrorMessage
         reveal={props.error}
@@ -58,7 +58,7 @@ Answer.propTypes = {
   removeAnswerHandler: PropTypes.func.isRequired,
   correctAnswerHandler: PropTypes.func.isRequired,
   error: PropTypes.bool,
-  errormessage: PropTypes.string
+  errormessage: PropTypes.string,
 };
 
 export default Answer;

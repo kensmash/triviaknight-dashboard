@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, Form, Radio } from "semantic-ui-react";
-import FormErrorMessage from "../../../../components/FormMessage/FormErrorMessage";
+import FormErrorMessage from "../../../components/FormMessage/FormErrorMessage";
 
-const QuestionDifficulty = props => (
+const QuestionDifficulty = (props) => (
   <Card fluid>
     <Card.Content>Difficulty</Card.Content>
     <Card.Content>
@@ -40,7 +40,7 @@ const QuestionDifficulty = props => (
 QuestionDifficulty.propTypes = {
   questionDifficultySelectHandler: PropTypes.func.isRequired,
   selectedQuestionDifficulty: PropTypes.string,
-  errormessage: PropTypes.string
+  errormessage: PropTypes.string,
 };
 
 export default QuestionDifficulty;

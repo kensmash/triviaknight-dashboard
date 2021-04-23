@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Table, Grid, Pagination } from "semantic-ui-react";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_PUSHRECEIPTSPAGE from "../../../apollo/queries/pushReceiptsPage";
+import QUERY_PUSHRECEIPTSPAGE from "../../apollo/queries/pushReceiptsPage";
 
 const PushReceiptsList = () => {
   const [activePage, setActivePage] = useState(1);

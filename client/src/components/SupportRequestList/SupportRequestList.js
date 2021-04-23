@@ -5,7 +5,7 @@ import format from "date-fns/format";
 import DeleteSupportRequestModal from "./DeleteSupportRequestModal";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_SUPPORTREQUESTPAGE from "../../../apollo/queries/supportRequestPage";
+import QUERY_SUPPORTREQUESTPAGE from "../../apollo/queries/supportRequestPage";
 
 const SupportRequestList = (props) => {
   const [activePage, setActivePage] = useState(1);

@@ -5,8 +5,8 @@ import format from "date-fns/format";
 import { Table, Grid, Pagination } from "semantic-ui-react";
 import DeleteQuestionReportModal from "./DeleteQuestionReportModal";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
-import QUERY_QUESTIONREPORTSPAGE from "../../../apollo/queries/questionReportsPage";
+import { useQuery } from "@apollo/client";
+import QUERY_QUESTIONREPORTSPAGE from "../../apollo/queries/questionReportsPage";
 
 const QuestionReportsList = () => {
   const [activePage, setActivePage] = useState(1);
@@ -14,28 +14,28 @@ const QuestionReportsList = () => {
 
   const variables = {
     offset: limit * parseInt(activePage, 10) - limit,
-    limit
+    limit,
   };
 
   const { loading, data: { questionReportsPage } = {}, fetchMore } = useQuery(
     QUERY_QUESTIONREPORTSPAGE,
     {
       variables,
-      fetchPolicy: "network-only"
+      fetchPolicy: "network-only",
     }
   );
 
-  const fetchMoreHandler = activePage => {
+  const fetchMoreHandler = (activePage) => {
     setActivePage(activePage);
     if (activePage > 1) {
       fetchMore({
         variables: {
-          offset: limit * parseInt(activePage, 10) - limit
+          offset: limit * parseInt(activePage, 10) - limit,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return fetchMoreResult;
-        }
+        },
       });
     }
   };
@@ -61,7 +61,7 @@ const QuestionReportsList = () => {
           <>
             <Table.Body>
               {questionReportsPage.reports.length ? (
-                questionReportsPage.reports.map(report => (
+                questionReportsPage.reports.map((report) => (
                   <Table.Row key={report._id}>
                     <Table.Cell collapsing>
                       <Link to={`${report.question._id}`}>
@@ -128,7 +128,7 @@ const QuestionReportsList = () => {
 
 QuestionReportsList.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };
 
 export default QuestionReportsList;
