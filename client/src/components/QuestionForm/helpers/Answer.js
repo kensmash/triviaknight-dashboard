@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormErrorMessage from "../../../components/FormMessage/FormErrorMessage";
+import FormErrorMessage from "../../../components/FormMessages/FormErrorMessage";
 import { Grid, Icon, Button, Form, Checkbox } from "semantic-ui-react";
 
 const Answer = (props) => {

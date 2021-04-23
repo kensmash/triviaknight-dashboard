@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "semantic-ui-react";
 //graphql
-import { useMutation, useApolloClient } from "@apollo/react-hooks";
+import { gql, useMutation, useApolloClient } from "@apollo/client";
 
 const TopNav = (props) => {
   const [activeItem, setActiveItem] = useState("");

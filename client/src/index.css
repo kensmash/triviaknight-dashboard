@@ -16,6 +16,14 @@ body {
 
 #root {
   height: 100%;
-  padding: 1.5em 2em 1em;
   background: rgba(238, 238, 238, 1);
+}
+
+/*remove border radius from top nav*/
+.ui.menu {
+  border-radius: 0 !important;
+}
+
+.content-container {
+  padding: 1em;
 }

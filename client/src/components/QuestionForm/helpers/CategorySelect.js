@@ -9,10 +9,10 @@ import {
   Icon,
 } from "semantic-ui-react";
 import CategoryForm from "../../../components/CategoryForm/CategoryForm";
-import FormErrorMessage from "../../../components/FormMessage/FormErrorMessage";
+import FormErrorMessage from "../../../components/FormMessages/FormErrorMessage";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORIES from "../../apollo/queries/categories";
+import QUERY_CATEGORIES from "../../../apollo/queries/categories";
 
 const CategorySelect = (props) => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);

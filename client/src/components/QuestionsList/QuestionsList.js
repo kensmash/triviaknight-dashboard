@@ -18,10 +18,9 @@ import DifficultySelect from "./helpers/DifficultySelect";
 import TypeSelect from "./helpers/TypeSelect";
 import StatusSelect from "./helpers/StatusSelect";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import QUERY_QUESTIONSPAGE from "../../../apollo/queries/questionsPage";
-import QUERY_QUESTIONSEARCHCRITERIA from "../../../apollo/queries/client-questionSearchCriteria";
+import { gql, useQuery, useMutation } from "@apollo/client";
+import QUERY_QUESTIONSPAGE from "../../apollo/queries/questionsPage";
+import QUERY_QUESTIONSEARCHCRITERIA from "../../apollo/queries/client-questionSearchCriteria";
 
 const QuestionsList = (props) => {
   const [perPageOptions] = useState([
