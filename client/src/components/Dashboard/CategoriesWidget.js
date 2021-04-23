@@ -32,7 +32,7 @@ const CategoriesWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/categories")}
+          onClick={() => props.history.push("/categories")}
         >
           See Categories
         </Button>

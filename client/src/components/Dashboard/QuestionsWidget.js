@@ -31,14 +31,14 @@ const QuestionsWidget = (props) => {
           <Button
             basic
             color="blue"
-            onClick={() => props.history.push("admin/questions")}
+            onClick={() => props.history.push("/questions")}
           >
             See Questions
           </Button>
           <Button
             basic
             color="green"
-            onClick={() => props.history.push("admin/questions/new")}
+            onClick={() => props.history.push("/questions/new")}
           >
             Add New Question
           </Button>

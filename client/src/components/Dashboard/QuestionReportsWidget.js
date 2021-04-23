@@ -29,7 +29,7 @@ const QuestionReportsWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/questions/reports")}
+          onClick={() => props.history.push("/questions/reports")}
         >
           See Question Reports
         </Button>

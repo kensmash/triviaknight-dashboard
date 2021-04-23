@@ -29,7 +29,7 @@ const SupportRequestsWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/supportrequests")}
+          onClick={() => props.history.push("/supportrequests")}
         >
           See Support Requests
         </Button>

@@ -29,7 +29,7 @@ const PushTicketsWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/pushtickets")}
+          onClick={() => props.history.push("/pushtickets")}
         >
           See Push Tickets
         </Button>

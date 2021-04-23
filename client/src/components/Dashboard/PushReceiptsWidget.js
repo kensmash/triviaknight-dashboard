@@ -29,7 +29,7 @@ const PushReceiptsWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/pushreceipts")}
+          onClick={() => props.history.push("/pushreceipts")}
         >
           See Push Receipts
         </Button>

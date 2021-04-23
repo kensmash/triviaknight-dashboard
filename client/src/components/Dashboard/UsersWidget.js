@@ -26,7 +26,7 @@ const UsersWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/users")}
+          onClick={() => props.history.push("/users")}
         >
           See Users
         </Button>
