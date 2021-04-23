@@ -1,13 +1,13 @@
 import React from "react";
 //components
-import QuestionForm from "../../../components/Admin/QuestionForm/QuestionForm";
+import QuestionForm from "../../../components/QuestionForm/QuestionForm";
 ////graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_QUESTION from "../../../apollo/queries/question";
 
 const EditQuestion = ({ match, history }) => {
   const { loading, error, data: { question } = {} } = useQuery(QUERY_QUESTION, {
-    variables: { id: match.params._id }
+    variables: { id: match.params._id },
   });
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;

@@ -2,18 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Dropdown } from "semantic-ui-react";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_CATEGORIES from "../../../../apollo/queries/categories";
 
-const CategorySelect = props => {
+const CategorySelect = (props) => {
   const { loading, error, data } = useQuery(QUERY_CATEGORIES);
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error :(</div>;
 
-  const cats = data.categories.map(item => ({
+  const cats = data.categories.map((item) => ({
     key: item._id,
     value: item._id,
-    text: item.name
+    text: item.name,
   }));
 
   return (
@@ -32,7 +32,7 @@ const CategorySelect = props => {
 
 CategorySelect.propTypes = {
   value: PropTypes.string,
-  categorySelectHandler: PropTypes.func
+  categorySelectHandler: PropTypes.func,
 };
 
 export default CategorySelect;

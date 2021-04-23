@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AnnouncementForm from "../../../components/Admin/AnnouncementForm/AnnouncementForm";
+import AnnouncementForm from "../components/AnnouncementForm/AnnouncementForm";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
-import QUERY_ANNOUNCEMENT from "../../../apollo/queries/announcement";
+import { useQuery } from "@apollo/client";
+import QUERY_ANNOUNCEMENT from "../apollo/queries/announcement";
 
 const EditAnnouncement = ({ match, history }) => {
   const { loading, error, data: { announcement } = {} } = useQuery(

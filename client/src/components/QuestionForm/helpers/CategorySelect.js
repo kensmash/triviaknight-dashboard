@@ -6,32 +6,32 @@ import {
   Form,
   Transition,
   Button,
-  Icon
+  Icon,
 } from "semantic-ui-react";
-import CategoryForm from "../../../../components/Admin/CategoryForm/CategoryForm";
+import CategoryForm from "../../../../components/CategoryForm/CategoryForm";
 import FormErrorMessage from "../../../../components/FormMessage/FormErrorMessage";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_CATEGORIES from "../../../../apollo/queries/categories";
 
-const CategorySelect = props => {
+const CategorySelect = (props) => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_CATEGORIES);
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error :(</div>;
 
-  const cats = data.categories.map(item => ({
+  const cats = data.categories.map((item) => ({
     key: item._id,
     value: item._id,
-    text: item.name
+    text: item.name,
   }));
 
   const toggleCollapse = () => {
     setShowCategoryForm(!showCategoryForm);
   };
 
-  const questionCategorySelectHandler = category => {
+  const questionCategorySelectHandler = (category) => {
     if (showCategoryForm) {
       setShowCategoryForm(false);
     }
@@ -91,7 +91,7 @@ const CategorySelect = props => {
 CategorySelect.propTypes = {
   type: PropTypes.string,
   selectedCategory: PropTypes.string,
-  categorySelectHandler: PropTypes.func
+  categorySelectHandler: PropTypes.func,
 };
 
 export default CategorySelect;

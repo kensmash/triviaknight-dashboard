@@ -2,22 +2,21 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { gql, useMutation } from "@apollo/client";
 import QUERY_CATEGORYGROUPS from "../../../apollo/queries/categoryGroups";
 import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";
 
-const DeleteCategoryGroupModal = props => {
+const DeleteCategoryGroupModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteCategoryGroup] = useMutation(MUTATION_DELETECATEGORYGROUP, {
     variables: {
-      id: props.categorygroupid
+      id: props.categorygroupid,
     },
     refetchQueries: [
       { query: QUERY_CATEGORYGROUPSPAGE, variables: props.variables },
-      { query: QUERY_CATEGORYGROUPS }
-    ]
+      { query: QUERY_CATEGORYGROUPS },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -65,7 +64,7 @@ const MUTATION_DELETECATEGORYGROUP = gql`
 DeleteCategoryGroupModal.propTypes = {
   categorygroupname: PropTypes.string,
   categorygroupid: PropTypes.string,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteCategoryGroupModal;

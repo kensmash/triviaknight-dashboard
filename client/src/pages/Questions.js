@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionsList from "../../../components/Admin/QuestionsList/QuestionsList";
+import QuestionsList from "../../../components/QuestionsList/QuestionsList";
 
 const Questions = ({ history, match }) => (
   <div className="tableContainer">

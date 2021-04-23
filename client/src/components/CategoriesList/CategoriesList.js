@@ -16,8 +16,7 @@ import CatGameTypeSelect from "../CatGameTypeSelect/CatGameTypeSelect";
 import CatTypeSelect from "../CatTypeSelect/CatTypeSelect";
 import CatGenreSelect from "../CatGenreSelect/CatGenreSelect";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/client";
 import QUERY_CATEGORIESPAGE from "../../../apollo/queries/categoriesPage";
 import QUERY_CLIENTCATEGORYSEARCH from "../../../apollo/queries/client-categorySearchCriteria";
 

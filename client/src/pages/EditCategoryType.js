@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CategoryTypeForm from "../../../components/Admin/CategoryTypeForm/CategoryTypeForm";
+import CategoryTypeForm from "../../../components/CategoryTypeForm/CategoryTypeForm";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_CATEGORYTYPE from "../../../apollo/queries/categoryType";
 
 const EditCategoryType = ({ match, history }) => {
   const { loading, error, data: { categoryType } = {} } = useQuery(
     QUERY_CATEGORYTYPE,
     {
-      variables: { id: match.params._id }
+      variables: { id: match.params._id },
     }
   );
   if (loading) return "Loading...";
@@ -26,7 +26,7 @@ const EditCategoryType = ({ match, history }) => {
 
 EditCategoryType.propTypes = {
   match: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default EditCategoryType;

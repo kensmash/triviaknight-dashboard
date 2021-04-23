@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Table, Grid, Pagination } from "semantic-ui-react";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_PUSHTICKETSPAGE from "../../../apollo/queries/pushTicketsPage";
 
 const PushTicketsList = () => {

@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Checkbox } from "semantic-ui-react";
 //components
-import FormErrorMessage from "../../FormMessage/FormErrorMessage";
-import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
+import FormErrorMessage from "../FormMessages/FormErrorMessage";
+import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
-import QUERY_ANNOUNCEMENTSPAGE from "../../../apollo/queries/announcementsPage";
+import { gql, useMutation } from "@apollo/client";
+import QUERY_ANNOUNCEMENTSPAGE from "../../apollo/queries/announcementsPage";
 
 const AnnouncementForm = (props) => {
   const initialState = {

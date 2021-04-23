@@ -6,8 +6,7 @@ import IconSetSelect from "./IconSetSelect";
 import FormErrorMessage from "../../FormMessage/FormErrorMessage";
 import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 //queries
 import QUERY_CATEGORYTYPES from "../../../apollo/queries/categoryTypes";
 import QUERY_CATEGORYTYPESPAGE from "../../../apollo/queries/categoryTypesPage";

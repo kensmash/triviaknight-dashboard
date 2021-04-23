@@ -4,7 +4,7 @@ import { Table, Grid, Pagination } from "semantic-ui-react";
 import DeleteJoustGameModal from "./DeleteJoustGameModal";
 import format from "date-fns/format";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_JOUSTGAMEPAGE from "../../../apollo/queries/joustGamePage";
 
 const GamesJoustList = () => {
@@ -13,26 +13,26 @@ const GamesJoustList = () => {
 
   const variables = {
     offset: limit * parseInt(currentActivePage, 10) - limit,
-    limit
+    limit,
   };
 
   const { loading, data: { joustgamepage } = {}, fetchMore } = useQuery(
     QUERY_JOUSTGAMEPAGE,
     {
       variables,
-      fetchPolicy: "cache-and-network"
+      fetchPolicy: "cache-and-network",
     }
   );
 
   useEffect(() => {
     fetchMore({
       variables: {
-        offset: limit * parseInt(currentActivePage, 10) - limit
+        offset: limit * parseInt(currentActivePage, 10) - limit,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
         return fetchMoreResult;
-      }
+      },
     });
   }, [currentActivePage, limit, fetchMore]);
 
@@ -60,7 +60,7 @@ const GamesJoustList = () => {
           <>
             <Table.Body>
               {joustgamepage.joustgames.length ? (
-                joustgamepage.joustgames.map(game => (
+                joustgamepage.joustgames.map((game) => (
                   <Table.Row key={game._id}>
                     <Table.Cell collapsing>
                       {format(
@@ -70,7 +70,7 @@ const GamesJoustList = () => {
                     </Table.Cell>
                     <Table.Cell>
                       {game.players
-                        .map(player => player.player.name)
+                        .map((player) => player.player.name)
                         .join(", ")}
                     </Table.Cell>
                     <Table.Cell>{game.category.name}</Table.Cell>
@@ -141,7 +141,7 @@ const GamesJoustList = () => {
 
 GamesJoustList.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };
 
 export default GamesJoustList;

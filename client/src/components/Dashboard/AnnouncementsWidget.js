@@ -29,7 +29,7 @@ const AnnouncementsWidget = (props) => {
           basic
           fluid
           color="blue"
-          onClick={() => props.history.push("admin/announcements")}
+          onClick={() => props.history.push("/announcements")}
         >
           See Announcements
         </Button>

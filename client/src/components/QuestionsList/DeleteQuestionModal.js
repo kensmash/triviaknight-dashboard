@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { gql, useMutation } from "@apollo/client";
 import QUERY_QUESTIONSPAGE from "../../../apollo/queries/questionsPage";
 
-const DeleteQuestionModal = props => {
+const DeleteQuestionModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteQuestion] = useMutation(MUTATION_DELETEQUESTION, {
     variables: {
-      id: props.questionid
+      id: props.questionid,
     },
-    refetchQueries: [{ query: QUERY_QUESTIONSPAGE, variables: props.variables }]
+    refetchQueries: [
+      { query: QUERY_QUESTIONSPAGE, variables: props.variables },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -57,7 +58,7 @@ const MUTATION_DELETEQUESTION = gql`
 
 DeleteQuestionModal.propTypes = {
   questionid: PropTypes.string,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteQuestionModal;

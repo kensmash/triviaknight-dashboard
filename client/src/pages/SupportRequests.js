@@ -1,5 +1,5 @@
 import React from "react";
-import SupportRequestList from "../../../components/Admin/SupportRequestList/SupportRequestList";
+import SupportRequestList from "../../../components/SupportRequestList/SupportRequestList";
 
 const SupportRequests = ({ match, history }) => (
   <SupportRequestList history={history} match={match} />

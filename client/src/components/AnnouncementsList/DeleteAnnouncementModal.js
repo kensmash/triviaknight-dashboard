@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
-import QUERY_ANNOUNCEMENTSPAGE from "../../../apollo/queries/announcementsPage";
+import { gql, useMutation } from "@apollo/client";
+import QUERY_ANNOUNCEMENTSPAGE from "../../apollo/queries/announcementsPage";
 
 const DeleteAnnouncementModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);

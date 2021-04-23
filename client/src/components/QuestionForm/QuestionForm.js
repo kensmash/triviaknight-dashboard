@@ -11,8 +11,7 @@ import QuestionDifficulty from "./helpers/QuestionDifficulty";
 import FormErrorMessage from "../../FormMessage/FormErrorMessage";
 import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/client";
 import QUERY_CLIENTADDQUESTIONCRITERIA from "../../../apollo/queries/client-addQuestionCriteria";
 
 const QuestionForm = (props) => {

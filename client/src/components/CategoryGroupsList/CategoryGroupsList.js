@@ -3,37 +3,37 @@ import PropTypes from "prop-types";
 import { Table, Button, Icon, Grid, Pagination } from "semantic-ui-react";
 import DeleteCategoryGroupModal from "./DeleteCategoryGroupModal";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";
 
-const CategoryGroupsList = props => {
+const CategoryGroupsList = (props) => {
   const [activePage, setActivePage] = useState(1);
   const [limit] = useState(15);
 
   const variables = {
     offset: limit * parseInt(activePage, 10) - limit,
-    limit
+    limit,
   };
 
   const { loading, data: { categoryGroupsPage } = {}, fetchMore } = useQuery(
     QUERY_CATEGORYGROUPSPAGE,
     {
       variables,
-      fetchPolicy: "cache-and-network"
+      fetchPolicy: "cache-and-network",
     }
   );
 
-  const fetchMoreHandler = activePage => {
+  const fetchMoreHandler = (activePage) => {
     setActivePage(activePage);
     if (activePage > 1) {
       fetchMore({
         variables: {
-          offset: limit * parseInt(activePage, 10) - limit
+          offset: limit * parseInt(activePage, 10) - limit,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return fetchMoreResult;
-        }
+        },
       });
     }
   };
@@ -62,14 +62,14 @@ const CategoryGroupsList = props => {
           <>
             <Table.Body>
               {categoryGroupsPage.categorygroups.length ? (
-                categoryGroupsPage.categorygroups.map(group => (
+                categoryGroupsPage.categorygroups.map((group) => (
                   <Table.Row key={group._id}>
                     <Table.Cell>{group.name}</Table.Cell>
                     <Table.Cell>{group.displaytext}</Table.Cell>
                     <Table.Cell>{group.active ? "Yes" : "No"}</Table.Cell>
                     <Table.Cell>
                       {group.categories.length
-                        ? group.categories.map(cat => cat.name).join(", ")
+                        ? group.categories.map((cat) => cat.name).join(", ")
                         : null}
                     </Table.Cell>
                     <Table.Cell collapsing>
@@ -137,7 +137,7 @@ const CategoryGroupsList = props => {
 
 CategoryGroupsList.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };
 
 export default CategoryGroupsList;

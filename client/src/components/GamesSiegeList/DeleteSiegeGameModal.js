@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { gql, useMutation } from "@apollo/client";
 import QUERY_SIEGEGAMEPAGE from "../../../apollo/queries/siegeGamePage";
 
-const DeleteSiegeGameModal = props => {
+const DeleteSiegeGameModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteSiegeGame] = useMutation(MUTATION_DELETESIEGEGAME, {
     variables: {
-      gameid: props.siegegameid
+      gameid: props.siegegameid,
     },
-    refetchQueries: [{ query: QUERY_SIEGEGAMEPAGE, variables: props.variables }]
+    refetchQueries: [
+      { query: QUERY_SIEGEGAMEPAGE, variables: props.variables },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -58,7 +59,7 @@ const MUTATION_DELETESIEGEGAME = gql`
 
 DeleteSiegeGameModal.propTypes = {
   siegegameid: PropTypes.string.isRequired,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteSiegeGameModal;

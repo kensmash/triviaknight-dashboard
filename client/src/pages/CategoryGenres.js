@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Grid, Card, Header } from "semantic-ui-react";
-import CategoryGenreForm from "../../../components/Admin/CategoryGenreForm/CategoryGenreForm";
-import CategoryGenresList from "../../../components/Admin/CategoryGenresList/CategoryGenresList";
+import CategoryGenreForm from "../../../components/CategoryGenreForm/CategoryGenreForm";
+import CategoryGenresList from "../../../components/CategoryGenresList/CategoryGenresList";
 
 const CategoryGenres = ({ history, match }) => (
   <Fragment>

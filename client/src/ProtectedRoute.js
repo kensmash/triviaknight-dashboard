@@ -22,11 +22,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       render={(props) =>
-        !currentUser && !currentUser.isAdmin ? (
-          <Redirect to="/login" />
-        ) : (
-          <Component {...props} />
-        )
+        !currentUser ? <Redirect to="/login" /> : <Component {...props} />
       }
       {...rest}
     />

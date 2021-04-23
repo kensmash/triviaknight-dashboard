@@ -7,8 +7,7 @@ import CatGenreSelect from "../CatGenreSelect/CatGenreSelect";
 import FormErrorMessage from "../../FormMessage/FormErrorMessage";
 import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/client";
 import QUERY_CATEGORIES from "../../../apollo/queries/categories";
 import QUERY_CATEGORIESPAGE from "../../../apollo/queries/categoriesPage";
 import QUERY_CLIENTCATEGORYSEARCH from "../../../apollo/queries/client-categorySearchCriteria";

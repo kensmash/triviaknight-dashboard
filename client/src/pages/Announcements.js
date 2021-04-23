@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Card, Header } from "semantic-ui-react";
-import AnnouncementForm from "../../../components/Admin/AnnouncementForm/AnnouncementForm";
-import AnnouncementsList from "../../../components/Admin/AnnouncementsList/AnnouncementsList";
+import AnnouncementForm from "../components/AnnouncementForm/AnnouncementForm";
+import AnnouncementsList from "../components/AnnouncementsList/AnnouncementsList";
 
 const Announcements = ({ history, match }) => (
   <>

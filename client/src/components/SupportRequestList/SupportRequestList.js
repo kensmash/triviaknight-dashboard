@@ -4,37 +4,37 @@ import { Table, Grid, Pagination, Button, Icon } from "semantic-ui-react";
 import format from "date-fns/format";
 import DeleteSupportRequestModal from "./DeleteSupportRequestModal";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_SUPPORTREQUESTPAGE from "../../../apollo/queries/supportRequestPage";
 
-const SupportRequestList = props => {
+const SupportRequestList = (props) => {
   const [activePage, setActivePage] = useState(1);
   const [limit] = useState(15);
 
   const variables = {
     offset: limit * parseInt(activePage, 10) - limit,
-    limit
+    limit,
   };
 
   const { loading, data: { supportRequestPage } = {}, fetchMore } = useQuery(
     QUERY_SUPPORTREQUESTPAGE,
     {
       variables,
-      fetchPolicy: "cache-and-network"
+      fetchPolicy: "cache-and-network",
     }
   );
 
-  const fetchMoreHandler = activePage => {
+  const fetchMoreHandler = (activePage) => {
     setActivePage(activePage);
     if (activePage > 1) {
       fetchMore({
         variables: {
-          offset: limit * parseInt(activePage, 10) - limit
+          offset: limit * parseInt(activePage, 10) - limit,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult) return prev;
           return fetchMoreResult;
-        }
+        },
       });
     }
   };
@@ -65,7 +65,7 @@ const SupportRequestList = props => {
           <>
             <Table.Body>
               {supportRequestPage.requests.length ? (
-                supportRequestPage.requests.map(request => (
+                supportRequestPage.requests.map((request) => (
                   <Table.Row key={request._id}>
                     <Table.Cell collapsing>{request.from}</Table.Cell>
                     <Table.Cell collapsing>
@@ -146,7 +146,7 @@ const SupportRequestList = props => {
 
 SupportRequestList.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };
 
 export default SupportRequestList;

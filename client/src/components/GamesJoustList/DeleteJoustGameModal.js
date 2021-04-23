@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { gql, useMutation } from "@apollo/react-client";
 import QUERY_JOUSTGAMEPAGE from "../../../apollo/queries/joustGamePage";
 
-const DeleteJoustGameModal = props => {
+const DeleteJoustGameModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteJoustGame] = useMutation(MUTATION_DELETEJOUSTGAME, {
     variables: {
-      gameid: props.joustgameid
+      gameid: props.joustgameid,
     },
-    refetchQueries: [{ query: QUERY_JOUSTGAMEPAGE, variables: props.variables }]
+    refetchQueries: [
+      { query: QUERY_JOUSTGAMEPAGE, variables: props.variables },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -58,7 +59,7 @@ const MUTATION_DELETEJOUSTGAME = gql`
 
 DeleteJoustGameModal.propTypes = {
   joustgameid: PropTypes.string.isRequired,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteJoustGameModal;

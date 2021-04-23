@@ -4,7 +4,7 @@ import { Table, Grid, Pagination } from "semantic-ui-react";
 import DeleteSiegeGameModal from "./DeleteSiegeGameModal";
 import format from "date-fns/format";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_SIEGEGAMEPAGE from "../../../apollo/queries/siegeGamePage";
 
 const GamesSiegeList = () => {

@@ -5,8 +5,8 @@ import { Table, Button, Icon, Grid, Pagination } from "semantic-ui-react";
 import DeleteAnnouncementModal from "./DeleteAnnouncementModal";
 import format from "date-fns/format";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
-import QUERY_ANNOUNCEMENTSPAGE from "../../../apollo/queries/announcementsPage";
+import { useQuery } from "@apollo/client";
+import QUERY_ANNOUNCEMENTSPAGE from "../../apollo/queries/announcementsPage";
 
 const AnnouncementsList = (props) => {
   const [activePage, setActivePage] = useState(1);

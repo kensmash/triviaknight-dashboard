@@ -1,7 +1,7 @@
 import React from "react";
-import PushReceiptsList from "../../../components/Admin/PushReceiptsList/PushReceiptsList";
+import PushReceiptsList from "../../../components/PushReceiptsList/PushReceiptsList";
 
-const PushReceipts = props => (
+const PushReceipts = (props) => (
   <PushReceiptsList history={props.history} match={props.match} />
 );
 

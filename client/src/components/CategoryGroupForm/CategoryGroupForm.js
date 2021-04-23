@@ -6,8 +6,7 @@ import CategoriesSelect from "../CategoriesSelect/CategoriesSelect";
 import FormErrorMessage from "../../FormMessage/FormErrorMessage";
 import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
 //graphql
-import { gql } from "apollo-boost";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/client";
 //queries
 import QUERY_CATEGORYGROUPS from "../../../apollo/queries/categoryGroups";
 import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";

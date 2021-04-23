@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { gql, useMutation } from "@apollo/client";
 import QUERY_SUPPORTREQUESTPAGE from "../../../apollo/queries/supportRequestPage";
 
-const DeleteSupportRequestModal = props => {
+const DeleteSupportRequestModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteSupportRequest] = useMutation(MUTATION_DELETESUPPORTREQUEST, {
     variables: {
-      id: props.supportrequestid
+      id: props.supportrequestid,
     },
     refetchQueries: [
-      { query: QUERY_SUPPORTREQUESTPAGE, variables: props.variables }
-    ]
+      { query: QUERY_SUPPORTREQUESTPAGE, variables: props.variables },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -60,7 +59,7 @@ const MUTATION_DELETESUPPORTREQUEST = gql`
 
 DeleteSupportRequestModal.propTypes = {
   supportrequestid: PropTypes.string.isRequired,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteSupportRequestModal;

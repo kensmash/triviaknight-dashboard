@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Table, Grid, Pagination } from "semantic-ui-react";
 import format from "date-fns/format";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_USERSPAGE from "../../../apollo/queries/usersPage";
 
 const UsersList = () => {

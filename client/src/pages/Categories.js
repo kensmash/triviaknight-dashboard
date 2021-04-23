@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Card, Header, Form } from "semantic-ui-react";
-import CategoryForm from "../../../components/Admin/CategoryForm/CategoryForm";
-import CategoriesList from "../../../components/Admin/CategoriesList/CategoriesList";
+import CategoryForm from "../../../components/CategoryForm/CategoryForm";
+import CategoriesList from "../../../components/CategoriesList/CategoriesList";
 
 const Categories = ({ history, match }) => (
   <>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Table, Button, Icon, Grid, Pagination } from "semantic-ui-react";
 import DeleteCategoryTypeModal from "./DeleteCategoryTypeModal";
 //graphql
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import QUERY_CATEGORYTYPESPAGE from "../../../apollo/queries/categoryTypesPage";
 
 const CategoryTypesList = (props) => {
