@@ -1,9 +1,9 @@
 import React from "react";
 //components
-import QuestionForm from "../../../components/QuestionForm/QuestionForm";
+import QuestionForm from "../components/QuestionForm/QuestionForm";
 ////graphql
 import { useQuery } from "@apollo/client";
-import QUERY_QUESTION from "../../../apollo/queries/question";
+import QUERY_QUESTION from "../apollo/queries/question";
 
 const EditQuestion = ({ match, history }) => {
   const { loading, error, data: { question } = {} } = useQuery(QUERY_QUESTION, {

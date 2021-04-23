@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Dropdown } from "semantic-ui-react";
 //query
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORIES from "../../../apollo/queries/categories";
+import QUERY_CATEGORIES from "../../apollo/queries/categories";
 
 const CategoriesSelect = (props) => {
   const { loading, error, data } = useQuery(QUERY_CATEGORIES);

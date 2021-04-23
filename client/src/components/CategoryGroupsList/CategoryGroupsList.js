@@ -4,7 +4,7 @@ import { Table, Button, Icon, Grid, Pagination } from "semantic-ui-react";
 import DeleteCategoryGroupModal from "./DeleteCategoryGroupModal";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";
+import QUERY_CATEGORYGROUPSPAGE from "../../apollo/queries/categoryGroupsPage";
 
 const CategoryGroupsList = (props) => {
   const [activePage, setActivePage] = useState(1);

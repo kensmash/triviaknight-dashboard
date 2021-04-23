@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
 import { gql, useMutation } from "@apollo/client";
-import QUERY_CATEGORYGROUPS from "../../../apollo/queries/categoryGroups";
-import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";
+import QUERY_CATEGORYGROUPS from "../../apollo/queries/categoryGroups";
+import QUERY_CATEGORYGROUPSPAGE from "../../apollo/queries/categoryGroupsPage";
 
 const DeleteCategoryGroupModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);

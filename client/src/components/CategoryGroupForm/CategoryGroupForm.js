@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Label, Form, Button, Checkbox } from "semantic-ui-react";
 //components
 import CategoriesSelect from "../CategoriesSelect/CategoriesSelect";
-import FormErrorMessage from "../../FormMessage/FormErrorMessage";
-import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
+import FormErrorMessage from "../FormMessages/FormErrorMessage";
+import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
 //queries
-import QUERY_CATEGORYGROUPS from "../../../apollo/queries/categoryGroups";
-import QUERY_CATEGORYGROUPSPAGE from "../../../apollo/queries/categoryGroupsPage";
+import QUERY_CATEGORYGROUPS from "../../apollo/queries/categoryGroups";
+import QUERY_CATEGORYGROUPSPAGE from "../../apollo/queries/categoryGroupsPage";
 
 const CategoryGroupForm = (props) => {
   const [submittedCategoryGroupName, setSubmittedCategoryGroupName] = useState(

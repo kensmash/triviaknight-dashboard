@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionForm from "../../../components/QuestionForm/QuestionForm";
+import QuestionForm from "../components/QuestionForm/QuestionForm";
 
 const NewQuestion = (props) => (
   <div>

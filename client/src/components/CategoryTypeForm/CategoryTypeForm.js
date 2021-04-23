@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Form, Button, Label, Checkbox } from "semantic-ui-react";
 //components
 import IconSetSelect from "./IconSetSelect";
-import FormErrorMessage from "../../FormMessage/FormErrorMessage";
-import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
+import FormErrorMessage from "../FormMessages/FormErrorMessage";
+import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
-import { gql, useQuery, useMutation } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/client";
 //queries
-import QUERY_CATEGORYTYPES from "../../../apollo/queries/categoryTypes";
-import QUERY_CATEGORYTYPESPAGE from "../../../apollo/queries/categoryTypesPage";
+import QUERY_CATEGORYTYPES from "../../apollo/queries/categoryTypes";
+import QUERY_CATEGORYTYPESPAGE from "../../apollo/queries/categoryTypesPage";
 
 const CategoryTypeForm = (props) => {
   const [submittedCategoryTypeName, setSubmittedCategoryTypeName] = useState(

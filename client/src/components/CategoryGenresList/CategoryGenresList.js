@@ -14,8 +14,8 @@ import CatTypeSelect from "../CatTypeSelect/CatTypeSelect";
 import DeleteCategoryGenreModal from "./DeleteCategoryGenreModal";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
-import QUERY_CATEGORYGENRESPAGE from "../../../apollo/queries/categoryGenresPage";
-import QUERY_CLIENTCATEGORYGENRESSEARCH from "../../../apollo/queries/client-categoryGenreSearchCriteria";
+import QUERY_CATEGORYGENRESPAGE from "../../apollo/queries/categoryGenresPage";
+import QUERY_CLIENTCATEGORYGENRESSEARCH from "../../apollo/queries/client-categoryGenreSearchCriteria";
 
 const CategoryGenresList = (props) => {
   const [name, setName] = useState("");

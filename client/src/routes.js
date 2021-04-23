@@ -8,14 +8,14 @@ import Dashboard from "./pages/Dashboard";
 import Announcements from "./pages/Announcements";
 import EditAnnouncement from "./pages/EditAnnouncement";
 //categories
-import Categories from "./pages/Categories/Categories";
-import EditCategory from "./pages/EditCategory/EditCategory";
-import CategoryTypes from "./pages/CategoryTypes/CategoryTypes";
-import EditCategoryType from "./pages/EditCategoryType/EditCategoryType";
-import CategoryGenres from "./pages/CategoryGenres/CategoryGenres";
-import EditCategoryGenre from "./pages/EditCategoryGenre/EditCategoryGenre";
-import CategoryGroups from "./pages/CategoryGroups/CategoryGroups";
-import EditCategoryGroup from "./pages/EditCategoryGroup/EditCategoryGroup";
+import Categories from "./pages/Categories";
+import EditCategory from "./pages/EditCategory";
+import CategoryTypes from "./pages/CategoryTypes";
+import EditCategoryType from "./pages/EditCategoryType";
+import CategoryGenres from "./pages/CategoryGenres";
+import EditCategoryGenre from "./pages/EditCategoryGenre";
+import CategoryGroups from "./pages/CategoryGroups";
+import EditCategoryGroup from "./pages/EditCategoryGroup";
 
 const Routes = () => (
   <Router>

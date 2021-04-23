@@ -2,22 +2,21 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Icon, Modal } from "semantic-ui-react";
 //graphql
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
-import QUERY_CATEGORYGENRES from "../../../apollo/queries/categoryGenres";
-import QUERY_CATEGORYGENRESPAGE from "../../../apollo/queries/categoryGenresPage";
+import { gql, useMutation } from "@apollo/client";
+import QUERY_CATEGORYGENRES from "../../apollo/queries/categoryGenres";
+import QUERY_CATEGORYGENRESPAGE from "../../apollo/queries/categoryGenresPage";
 
-const DeleteCategoryGenreModal = props => {
+const DeleteCategoryGenreModal = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [deleteCategoryGenre] = useMutation(MUTATION_DELETECATEGORYGENRE, {
     variables: {
-      id: props.categorygenreid
+      id: props.categorygenreid,
     },
     refetchQueries: [
       { query: QUERY_CATEGORYGENRESPAGE, variables: props.variables },
-      { query: QUERY_CATEGORYGENRES }
-    ]
+      { query: QUERY_CATEGORYGENRES },
+    ],
   });
 
   const handleOpen = () => setModalOpen(true);
@@ -65,7 +64,7 @@ const MUTATION_DELETECATEGORYGENRE = gql`
 DeleteCategoryGenreModal.propTypes = {
   categorygenrename: PropTypes.string,
   categorygenreid: PropTypes.string,
-  variables: PropTypes.object
+  variables: PropTypes.object,
 };
 
 export default DeleteCategoryGenreModal;

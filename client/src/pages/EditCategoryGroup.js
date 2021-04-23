@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CategoryGroupForm from "../../../components/CategoryGroupForm/CategoryGroupForm";
+import CategoryGroupForm from "../components/CategoryGroupForm/CategoryGroupForm";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORYGROUP from "../../../apollo/queries/categoryGroup";
+import QUERY_CATEGORYGROUP from "../apollo/queries/categoryGroup";
 
 const EditCategoryGroup = ({ match, history }) => {
   const { loading, error, data: { categoryGroup } = {} } = useQuery(

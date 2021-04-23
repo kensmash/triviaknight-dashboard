@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Form, Transition, Dropdown } from "semantic-ui-react";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORYGENRES from "../../../apollo/queries/categoryGenres";
+import QUERY_CATEGORYGENRES from "../../apollo/queries/categoryGenres";
 
 const CatGenreSelect = (props) => {
   const { loading, error, data } = useQuery(QUERY_CATEGORYGENRES);

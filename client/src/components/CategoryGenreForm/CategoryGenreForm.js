@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Form, Button, Checkbox } from "semantic-ui-react";
 //components
 import CatTypeSelect from "../CatTypeSelect/CatTypeSelect";
-import FormErrorMessage from "../../FormMessage/FormErrorMessage";
-import FormSuccessMessage from "../../FormMessage/FormSuccessMessage";
+import FormErrorMessage from "../FormMessages/FormErrorMessage";
+import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
-import QUERY_CATEGORYGENRES from "../../../apollo/queries/categoryGenres";
-import QUERY_CATEGORYGENRESPAGE from "../../../apollo/queries/categoryGenresPage";
-import QUERY_CLIENTCATEGORYGENRESSEARCH from "../../../apollo/queries/client-categoryGenreSearchCriteria";
+import QUERY_CATEGORYGENRES from "../../apollo/queries/categoryGenres";
+import QUERY_CATEGORYGENRESPAGE from "../../apollo/queries/categoryGenresPage";
+import QUERY_CLIENTCATEGORYGENRESSEARCH from "../../apollo/queries/client-categoryGenreSearchCriteria";
 
 const CategoryGenreForm = (props) => {
   const [submittedCategoryGenreName, setSubmittedCategoryGenreName] = useState(

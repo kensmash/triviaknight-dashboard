@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 //components
-import CategoryForm from "../../../components/CategoryForm/CategoryForm";
+import CategoryForm from "../components/CategoryForm/CategoryForm";
 //graphql
 import { useQuery } from "@apollo/client";
-import QUERY_CATEGORY from "../../../apollo/queries/category";
+import QUERY_CATEGORY from "../apollo/queries/category";
 
 const EditCategory = ({ match, history }) => {
   const { loading, error, data: { category } = {} } = useQuery(QUERY_CATEGORY, {
