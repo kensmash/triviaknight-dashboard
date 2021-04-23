@@ -16,6 +16,21 @@ import CategoryGenres from "./pages/CategoryGenres";
 import EditCategoryGenre from "./pages/EditCategoryGenre";
 import CategoryGroups from "./pages/CategoryGroups";
 import EditCategoryGroup from "./pages/EditCategoryGroup";
+//questions
+import Questions from "./pages/Questions";
+import NewQuestion from "./pages/NewQuestion";
+import EditQuestion from "./pages/EditQuestion";
+import QuestionReports from "./pages/QuestionReports";
+//games
+import GamesJoust from "./pages/GamesJoust";
+import GamesSiege from "./pages/GamesSiege";
+//support
+import SupportRequests from "./pages/SupportRequests";
+//push notifications
+import PushTickets from "./pages/PushTickets";
+import PushReceipts from "./pages/PushReceipts";
+//users
+import Users from "./pages/Users";
 
 const Routes = () => (
   <Router>
@@ -63,6 +78,46 @@ const Routes = () => (
         name="Edit Category Group"
         component={EditCategoryGroup}
       />
+      <ProtectedRoute exact path={"/questions"} component={Questions} />
+      <Route
+        exact
+        path={"/questions/new"}
+        name="New Question"
+        component={NewQuestion}
+      />
+      <ProtectedRoute
+        exact
+        path={"/questions/reports"}
+        name="Question Reports"
+        component={QuestionReports}
+      />
+      <ProtectedRoute
+        exact
+        path={"/questions/:_id"}
+        name="Edit Question"
+        component={EditQuestion}
+      />
+      <ProtectedRoute
+        exact
+        path={"/joustgames"}
+        name="Joust Games"
+        component={GamesJoust}
+      />
+      <ProtectedRoute
+        exact
+        path={"/siegegames"}
+        name="Siege Games"
+        component={GamesSiege}
+      />
+      <ProtectedRoute exact path={"/users"} name="Users" component={Users} />
+      <ProtectedRoute
+        exact
+        path={"/supportrequests"}
+        name="Support Requests"
+        component={SupportRequests}
+      />
+      <ProtectedRoute exact path={"/pushtickets"} component={PushTickets} />
+      <ProtectedRoute exact path={"/pushreceipts"} component={PushReceipts} />
       <Route path="/login" component={Login} />
     </Switch>
   </Router>
