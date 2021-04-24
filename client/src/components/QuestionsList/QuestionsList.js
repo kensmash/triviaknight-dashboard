@@ -77,6 +77,10 @@ const QuestionsList = (props) => {
       limit: data.value,
     });
     //TODO: persist new value to local storage
+    localStorage.setItem(
+      "localQuestionSearchCriteria",
+      JSON.stringify(questionSearchCriteriaVar())
+    );
   };
 
   const inputChangedHandler = (event) => {

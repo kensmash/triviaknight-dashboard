@@ -29,14 +29,24 @@ const client = new ApolloClient({
     process.env.NODE_ENV === "production" ? "same-origin" : "include",
 });
 
-const questionSearchCriteriaVar = makeVar({
-  activePage: 1,
-  limit: 15,
-  question: "",
-  category: "",
-  difficulty: "",
-  type: "",
-  publishedstatus: null,
-});
+let questionSearchCriteriaVar;
+
+const savedQuestionSearch = JSON.parse(
+  localStorage.getItem("localQuestionSearchCriteria")
+);
+
+if (!savedQuestionSearch) {
+  questionSearchCriteriaVar = makeVar({
+    activePage: 1,
+    limit: 15,
+    question: "",
+    category: "",
+    difficulty: "",
+    type: "",
+    publishedstatus: null,
+  });
+} else {
+  questionSearchCriteriaVar = makeVar(savedQuestionSearch);
+}
 
 export { client, persistor, questionSearchCriteriaVar };
