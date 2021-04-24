@@ -19,8 +19,9 @@ import TypeSelect from "./helpers/TypeSelect";
 import StatusSelect from "./helpers/StatusSelect";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
+import { questionSearchCriteriaVar } from "../../apollo";
 import QUERY_QUESTIONSPAGE from "../../apollo/queries/questionsPage";
-import QUERY_QUESTIONSEARCHCRITERIA from "../../apollo/queries/client-questionSearchCriteria";
+import QUERY_QUESTIONSEARCH from "../../apollo/queries/client-questionSearchCriteria";
 
 const QuestionsList = (props) => {
   const [perPageOptions] = useState([
@@ -30,7 +31,7 @@ const QuestionsList = (props) => {
   ]);
 
   const { data: { questionSearchCriteria } = {} } = useQuery(
-    QUERY_QUESTIONSEARCHCRITERIA
+    QUERY_QUESTIONSEARCH
   );
 
   const variables = {
@@ -71,12 +72,11 @@ const QuestionsList = (props) => {
   const [updateQuestionSearch] = useMutation(MUTATION_UPDATEQUESTIONSEARCH);
 
   const perPageChangeHandler = (_e, data) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        limit: data.value,
-      },
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      limit: data.value,
     });
+    //TODO: persist new value to local storage
   };
 
   const inputChangedHandler = (event) => {

@@ -30,38 +30,38 @@ const TopNav = (props) => {
       />
 
       <Menu.Menu position="right">
-        <Menu.Item as={Link} to={"/admin"} name="dashboard" />
+        <Menu.Item as={Link} to={"/"} name="dashboard" />
         <Dropdown item text="Questions">
           <Dropdown.Menu>
             <Dropdown.Item
               as={Link}
-              to={"/admin/questions"}
+              to={"/questions"}
               active={activeItem === "questions"}
             >
               All Questions
             </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item as={Link} to={"/admin/questions/new"}>
+            <Dropdown.Item as={Link} to={"/questions/new"}>
               New Question
             </Dropdown.Item>
-            <Dropdown.Item as={Link} to={"/admin/questions/reports"}>
+            <Dropdown.Item as={Link} to={"/questions/reports"}>
               Question Reports
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown item text="Categories">
           <Dropdown.Menu>
-            <Dropdown.Item as={Link} to={"/admin/categories"}>
+            <Dropdown.Item as={Link} to={"/categories"}>
               Categories
             </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item as={Link} to={"/admin/categorytypes"}>
+            <Dropdown.Item as={Link} to={"/categorytypes"}>
               Category Types
             </Dropdown.Item>
-            <Dropdown.Item as={Link} to={"/admin/categorygenres"}>
+            <Dropdown.Item as={Link} to={"/categorygenres"}>
               Category Genres
             </Dropdown.Item>
-            <Dropdown.Item as={Link} to={"/admin/categorygroups"}>
+            <Dropdown.Item as={Link} to={"/categorygroups"}>
               Category Groups
             </Dropdown.Item>
           </Dropdown.Menu>
@@ -69,16 +69,16 @@ const TopNav = (props) => {
 
         <Dropdown item text="Games">
           <Dropdown.Menu>
-            <Dropdown.Item as={Link} to={"/admin/joustgames"}>
+            <Dropdown.Item as={Link} to={"/joustgames"}>
               Joust Games
             </Dropdown.Item>
-            <Dropdown.Item as={Link} to={"/admin/siegegames"}>
+            <Dropdown.Item as={Link} to={"/siegegames"}>
               Siege Games
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-        <Menu.Item as={Link} to={"/admin/users"} name="Users" />
+        <Menu.Item as={Link} to={"/users"} name="Users" />
 
         <Menu.Item name="logout" onClick={logoutHandler} />
       </Menu.Menu>

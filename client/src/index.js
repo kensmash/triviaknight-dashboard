@@ -5,7 +5,6 @@ import Routes from "./routes";
 //yo apollo
 import { ApolloProvider } from "@apollo/client";
 import { client, persistor } from "./apollo";
-
 //css
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
@@ -22,9 +21,11 @@ function App() {
   return (
     <>
       {!isRestored ? (
-        <Dimmer active>
-          <Loader />
-        </Dimmer>
+        <div>
+          <Dimmer active>
+            <Loader />
+          </Dimmer>
+        </div>
       ) : (
         <ApolloProvider client={client}>
           <Routes />
