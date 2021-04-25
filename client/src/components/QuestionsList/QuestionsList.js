@@ -76,65 +76,64 @@ const QuestionsList = (props) => {
       ...questionSearchCriteriaVar(),
       limit: data.value,
     });
-    //TODO: persist new value to local storage
+    persistLocalData();
+  };
+
+  const inputChangedHandler = (event) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      question: event.target.value,
+    });
+    persistLocalData();
+  };
+
+  const clearQuestionSearchHandler = () => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      question: "",
+    });
+    persistLocalData();
+  };
+
+  const categorySelectHandler = (_e, data) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      category: data.value,
+    });
+    persistLocalData();
+  };
+
+  const difficultySelectHandler = (_e, data) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      difficulty: data.value,
+    });
+    persistLocalData();
+  };
+
+  const typeSelectHandler = (_e, data) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      type: data.value,
+    });
+    persistLocalData();
+  };
+
+  const publishedSelectHandler = (_e, data) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      publishedstatus: data.value === "" ? null : data.value,
+    });
+    persistLocalData();
+  };
+
+  const persistLocalData = () => {
+    //persist new reactive var value to local storage
+    //since Apollo cache persist will not save reactive vars
     localStorage.setItem(
       "localQuestionSearchCriteria",
       JSON.stringify(questionSearchCriteriaVar())
     );
-  };
-
-  const inputChangedHandler = (event) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        question: event.target.value,
-      },
-    });
-  };
-
-  const clearQuestionSearchHandler = () => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        question: "",
-      },
-    });
-  };
-
-  const categorySelectHandler = (_e, data) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        category: data.value,
-      },
-    });
-  };
-
-  const difficultySelectHandler = (_e, data) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        difficulty: data.value,
-      },
-    });
-  };
-
-  const typeSelectHandler = (_e, data) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        type: data.value,
-      },
-    });
-  };
-
-  const publishedSelectHandler = (_e, data) => {
-    updateQuestionSearch({
-      variables: {
-        ...questionSearchCriteria,
-        publishedstatus: data.value === "" ? null : data.value,
-      },
-    });
   };
 
   const { match } = props;

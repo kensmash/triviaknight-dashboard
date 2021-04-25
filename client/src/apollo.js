@@ -29,6 +29,7 @@ const cache = new InMemoryCache({
     },
   },
 });
+
 //persist local cache https://gist.github.com/randytorres/2d8c36f567a1be7ddb89bb7b8ca7929d
 const persistor = new CachePersistor({
   cache,
@@ -108,7 +109,7 @@ if (!savedQuestionSearch) {
 }
 
 if (!savedAddQuestionCriteria) {
-  addQuestionCriteria = makeVar({
+  addQuestionCriteriaVar = makeVar({
     category: "",
   });
 } else {
