@@ -18,7 +18,7 @@ import DifficultySelect from "./helpers/DifficultySelect";
 import TypeSelect from "./helpers/TypeSelect";
 import StatusSelect from "./helpers/StatusSelect";
 //graphql
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { questionSearchCriteriaVar } from "../../apollo";
 import QUERY_QUESTIONSPAGE from "../../apollo/queries/questionsPage";
 import QUERY_QUESTIONSEARCH from "../../apollo/queries/client-questionSearchCriteria";
@@ -136,7 +136,7 @@ const QuestionsList = (props) => {
   const fetchMoreData = (activePage) => {
     questionSearchCriteriaVar({
       ...questionSearchCriteriaVar(),
-      publishedstatus: data.value === "" ? null : data.value,
+      activePage,
     });
     persistLocalData();
     fetchMore({

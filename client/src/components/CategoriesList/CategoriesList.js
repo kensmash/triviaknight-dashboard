@@ -53,15 +53,18 @@ const CategoriesList = (props) => {
           !data.categoriespage.categories.length &&
           categorySearchCriteria.activePage > 1
         ) {
-          categorySearchCriteriaVar({
-            ...questionSearchCriteriaVar(),
-            activePage: 1,
+          updateCategorySearch({
+            variables: {
+              ...categorySearchCriteria,
+              activePage: 1,
+            },
           });
-          persistLocalData();
         }
       },
     }
   );
+
+  const [updateCategorySearch] = useMutation(MUTATION_UPDATECATEGORYSEARCH);
 
   const inputChangedHandler = (event) => {
     updateCategorySearch({
@@ -135,15 +138,6 @@ const CategoriesList = (props) => {
         genres: data.value,
       },
     });
-  };
-
-  const persistLocalData = () => {
-    //persist new reactive var value to local storage
-    //since Apollo cache persist will not save reactive vars
-    localStorage.setItem(
-      "localCategorySearchCriteria",
-      JSON.stringify(categorySearchCriteriaVar())
-    );
   };
 
   const { match, history } = props;
