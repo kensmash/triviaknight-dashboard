@@ -18,7 +18,7 @@ import DifficultySelect from "./helpers/DifficultySelect";
 import TypeSelect from "./helpers/TypeSelect";
 import StatusSelect from "./helpers/StatusSelect";
 //graphql
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { questionSearchCriteriaVar } from "../../apollo";
 import QUERY_QUESTIONSPAGE from "../../apollo/queries/questionsPage";
 import QUERY_QUESTIONSEARCH from "../../apollo/queries/client-questionSearchCriteria";
@@ -58,18 +58,15 @@ const QuestionsList = (props) => {
           !data.questionspage.questions.length &&
           questionSearchCriteria.activePage > 1
         ) {
-          updateQuestionSearch({
-            variables: {
-              ...questionSearchCriteria,
-              activePage: 1,
-            },
+          questionSearchCriteriaVar({
+            ...questionSearchCriteriaVar(),
+            activePage: 1,
           });
+          persistLocalData();
         }
       },
     }
   );
-
-  const [updateQuestionSearch] = useMutation(MUTATION_UPDATEQUESTIONSEARCH);
 
   const perPageChangeHandler = (_e, data) => {
     questionSearchCriteriaVar({
@@ -134,6 +131,21 @@ const QuestionsList = (props) => {
       "localQuestionSearchCriteria",
       JSON.stringify(questionSearchCriteriaVar())
     );
+  };
+
+  const fetchMoreData = (activePage) => {
+    questionSearchCriteriaVar({
+      ...questionSearchCriteriaVar(),
+      publishedstatus: data.value === "" ? null : data.value,
+    });
+    persistLocalData();
+    fetchMore({
+      variables: {
+        offset:
+          questionSearchCriteria.limit * parseInt(activePage, 10) -
+          questionSearchCriteria.limit,
+      },
+    });
   };
 
   const { match } = props;
@@ -296,25 +308,7 @@ const QuestionsList = (props) => {
                           activePage={questionSearchCriteria.activePage}
                           totalPages={questionspage.pages}
                           onPageChange={(e, { activePage }) =>
-                            updateQuestionSearch({
-                              variables: {
-                                ...questionSearchCriteria,
-                                activePage,
-                              },
-                            }).then(() =>
-                              fetchMore({
-                                variables: {
-                                  offset:
-                                    questionSearchCriteria.limit *
-                                      parseInt(activePage, 10) -
-                                    questionSearchCriteria.limit,
-                                },
-                                updateQuery: (prev, { fetchMoreResult }) => {
-                                  if (!fetchMoreResult) return prev;
-                                  return fetchMoreResult;
-                                },
-                              })
-                            )
+                            fetchMoreData(activePage)
                           }
                         />
                       ) : null}
@@ -329,36 +323,6 @@ const QuestionsList = (props) => {
     </>
   );
 };
-
-const MUTATION_UPDATEQUESTIONSEARCH = gql`
-  mutation updateQuestionSearch(
-    $activePage: activePage
-    $limit: Int
-    $question: String
-    $category: ID
-    $difficulty: String
-    $type: String
-    $publishedstatus: String
-  ) {
-    updateQuestionSearch(
-      activePage: $activePage
-      limit: $limit
-      question: $question
-      category: $category
-      difficulty: $difficulty
-      type: $type
-      publishedstatus: $publishedstatus
-    ) @client {
-      activePage
-      limit
-      question
-      category
-      difficulty
-      type
-      publishedstatus
-    }
-  }
-`;
 
 QuestionsList.propTypes = {
   history: PropTypes.object.isRequired,
