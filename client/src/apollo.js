@@ -5,9 +5,24 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
+        categorySearchCriteria: {
+          read() {
+            return categorySearchCriteriaVar();
+          },
+        },
+        categoryGenreSearchCriteria: {
+          read() {
+            return categoryGenreSearchCriteriaVar();
+          },
+        },
         questionSearchCriteria: {
           read() {
             return questionSearchCriteriaVar();
+          },
+        },
+        addQuestionCriteria: {
+          read() {
+            return addQuestionCriteriaVar();
           },
         },
       },
@@ -33,15 +48,15 @@ const client = new ApolloClient({
 let categorySearchCriteriaVar;
 let categoryGenreSearchCriteriaVar;
 let questionSearchCriteriaVar;
-let addQuestionCriteria;
+let addQuestionCriteriaVar;
 
 //check local storage for values
 const savedCategorySearch = JSON.parse(
-  localStorage.getItem("locaCategorySearchCriteria")
+  localStorage.getItem("localCategorySearchCriteria")
 );
 
 const savedCategoryGenreSearch = JSON.parse(
-  localStorage.getItem("locaCategoryGenreSearchCriteria")
+  localStorage.getItem("localCategoryGenreSearchCriteria")
 );
 
 const savedQuestionSearch = JSON.parse(
@@ -97,7 +112,7 @@ if (!savedAddQuestionCriteria) {
     category: "",
   });
 } else {
-  addQuestionCriteria = makeVar(savedAddQuestionCriteria);
+  addQuestionCriteriaVar = makeVar(savedAddQuestionCriteria);
 }
 
 export {
@@ -106,5 +121,5 @@ export {
   categorySearchCriteriaVar,
   categoryGenreSearchCriteriaVar,
   questionSearchCriteriaVar,
-  addQuestionCriteria,
+  addQuestionCriteriaVar,
 };
