@@ -47,13 +47,15 @@ const QuestionsList = (props) => {
     published: questionSearchCriteria.publishedstatus,
   };
 
+  console.log("offset", variables.offset);
+
   const { loading, data: { questionspage } = {}, fetchMore } = useQuery(
     QUERY_QUESTIONSPAGE,
     {
       variables,
       fetchPolicy: "cache-and-network",
       onCompleted: (data) => {
-        //change currently selected page when no records for page greated than 1
+        //change currently selected page when no records for page greater than 1
         if (
           !data.questionspage.questions.length &&
           questionSearchCriteria.activePage > 1
@@ -124,15 +126,6 @@ const QuestionsList = (props) => {
     persistLocalData();
   };
 
-  const persistLocalData = () => {
-    //persist new reactive var value to local storage
-    //since Apollo cache persist will not save reactive vars
-    localStorage.setItem(
-      "localQuestionSearchCriteria",
-      JSON.stringify(questionSearchCriteriaVar())
-    );
-  };
-
   const fetchMoreData = (activePage) => {
     questionSearchCriteriaVar({
       ...questionSearchCriteriaVar(),
@@ -147,6 +140,17 @@ const QuestionsList = (props) => {
       },
     });
   };
+
+  const persistLocalData = () => {
+    //persist new reactive var value to local storage
+    //since Apollo cache persist will not save reactive vars
+    localStorage.setItem(
+      "localQuestionSearchCriteria",
+      JSON.stringify(questionSearchCriteriaVar())
+    );
+  };
+
+  console.log("data?", questionspage);
 
   const { match } = props;
 

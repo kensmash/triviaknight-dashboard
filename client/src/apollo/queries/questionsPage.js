@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 export default gql`
   query questionsPage(
-    $limit: Int!
     $offset: Int!
+    $limit: Int!
     $question: String
     $category: ID
     $difficulty: String
@@ -11,8 +11,8 @@ export default gql`
     $published: Boolean
   ) {
     questionspage(
-      limit: $limit
       offset: $offset
+      limit: $limit
       question: $question
       category: $category
       difficulty: $difficulty

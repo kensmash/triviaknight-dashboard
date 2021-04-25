@@ -55,8 +55,8 @@ const typeDef = gql`
     question(id: ID!): Question
     questionswidget: QuestionWidgetResponse
     questionspage(
-      limit: Int!
       offset: Int!
+      limit: Int!
       question: String
       category: ID
       difficulty: String

@@ -11,7 +11,7 @@ const resolvers = {
     questionspage: requiresAuth.createResolver(
       async (
         parent,
-        { limit, offset, question, category, difficulty, type, published }
+        { offset, limit, question, category, difficulty, type, published }
       ) => {
         const queryBuilder = (
           question,
@@ -41,6 +41,8 @@ const resolvers = {
           return query;
         };
 
+        console.log("offset", offset);
+        console.log("limit", limit);
         try {
           const questions = await Promise.all([
             Question.find(

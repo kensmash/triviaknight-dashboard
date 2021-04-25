@@ -140,6 +140,30 @@ const CategoriesList = (props) => {
     });
   };
 
+  const fetchMoreData = (activePage) => {
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      activePage,
+    });
+    persistLocalData();
+    fetchMore({
+      variables: {
+        offset:
+          categorySearchCriteria.limit * parseInt(activePage, 10) -
+          categorySearchCriteria.limit,
+      },
+    });
+  };
+
+  const persistLocalData = () => {
+    //persist new reactive var value to local storage
+    //since Apollo cache persist will not save reactive vars
+    localStorage.setItem(
+      "localCategorySearchCriteria",
+      JSON.stringify(categorySearchCriteriaVar())
+    );
+  };
+
   const { match, history } = props;
 
   return (
@@ -316,28 +340,7 @@ const CategoriesList = (props) => {
                           activePage={categorySearchCriteria.activePage}
                           totalPages={categoriespage.pages}
                           onPageChange={(e, { activePage }) =>
-                            updateCategorySearch({
-                              variables: {
-                                ...categorySearchCriteria,
-                                activePage,
-                              },
-                            }).then(() =>
-                              fetchMore({
-                                variables: {
-                                  input: {
-                                    ...variables.input,
-                                    offset:
-                                      categorySearchCriteria.limit *
-                                        parseInt(activePage, 10) -
-                                      categorySearchCriteria.limit,
-                                  },
-                                },
-                                updateQuery: (prev, { fetchMoreResult }) => {
-                                  if (!fetchMoreResult) return prev;
-                                  return fetchMoreResult;
-                                },
-                              })
-                            )
+                            fetchMoreData(activePage)
                           }
                         />
                       ) : null}

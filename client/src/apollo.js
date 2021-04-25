@@ -26,7 +26,26 @@ const cache = new InMemoryCache({
             return addQuestionCriteriaVar();
           },
         },
-        questionspage: offsetLimitPagination(),
+        questionspage: {
+          // Don't cache separate results based on
+          // any of this field's arguments.
+          keyArgs: false,
+          // Concatenate the incoming list items with
+          // the existing list items.
+          //had to shape the data according to what comes for query
+          merge(existing, incoming, { args: { offset = 0 } }) {
+            // Slicing is necessary because the existing data is
+            // immutable, and frozen in development.
+            const mergedQuestions =
+              existing && existing.questions ? existing.questions.slice(0) : [];
+            for (let i = 0; i < incoming.questions.length; ++i) {
+              mergedQuestions[offset + i] = incoming.questions[i];
+            }
+            const mergedResults = { ...incoming, questions: mergedQuestions };
+            return mergedResults;
+          },
+        },
+        categoriespage: offsetLimitPagination(),
       },
     },
   },
