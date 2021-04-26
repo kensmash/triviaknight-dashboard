@@ -23,6 +23,7 @@ const CategorySelect = (props) => {
       search
       selection
       clearable
+      selectOnBlur={false}
       placeholder="Filter by Category"
       onChange={props.categorySelectHandler}
       options={cats}

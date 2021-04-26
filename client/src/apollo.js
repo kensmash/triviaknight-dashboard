@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
 import { CachePersistor, LocalStorageWrapper } from "apollo3-cache-persist";
-import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -71,6 +70,46 @@ const cache = new InMemoryCache({
             return mergedResults;
           },
         },
+        userspage: {
+          keyArgs: false,
+          merge(existing, incoming, { args: { offset = 0 } }) {
+            const mergedUsers =
+              existing && existing.users ? existing.users.slice(0) : [];
+            for (let i = 0; i < incoming.users.length; ++i) {
+              mergedUsers[offset + i] = incoming.users[i];
+            }
+            const mergedResults = { ...incoming, users: mergedUsers };
+            return mergedResults;
+          },
+        },
+        joustgamepage: {
+          keyArgs: false,
+          merge(existing, incoming, { args: { offset = 0 } }) {
+            const mergedJousts =
+              existing && existing.joustgames
+                ? existing.joustgames.slice(0)
+                : [];
+            for (let i = 0; i < incoming.joustgames.length; ++i) {
+              mergedJousts[offset + i] = incoming.joustgames[i];
+            }
+            const mergedResults = { ...incoming, joustgames: mergedJousts };
+            return mergedResults;
+          },
+        },
+        siegegamepage: {
+          keyArgs: false,
+          merge(existing, incoming, { args: { offset = 0 } }) {
+            const mergedSieges =
+              existing && existing.siegegames
+                ? existing.siegegames.slice(0)
+                : [];
+            for (let i = 0; i < incoming.siegegames.length; ++i) {
+              mergedSieges[offset + i] = incoming.siegegames[i];
+            }
+            const mergedResults = { ...incoming, siegegames: mergedSieges };
+            return mergedResults;
+          },
+        },
       },
     },
   },
@@ -114,6 +153,7 @@ const savedAddQuestionCriteria = JSON.parse(
   localStorage.getItem("localAddQuestionCriteria")
 );
 
+//if local values don't exist, populate reactive vars with default data
 if (!savedCategorySearch) {
   categorySearchCriteriaVar = makeVar({
     activePage: 1,
