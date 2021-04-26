@@ -26,16 +26,42 @@ const cache = new InMemoryCache({
             return addQuestionCriteriaVar();
           },
         },
-        questionspage: {
-          // Don't cache separate results based on
-          // any of this field's arguments.
+        categoriespage: {
+          // Don't cache separate results based on any of this field's arguments.
           keyArgs: false,
-          // Concatenate the incoming list items with
-          // the existing list items.
-          //had to shape the data according to what comes for query
+          // shape the data according to what comes from query
           merge(existing, incoming, { args: { offset = 0 } }) {
-            // Slicing is necessary because the existing data is
-            // immutable, and frozen in development.
+            const mergedCategories =
+              existing && existing.categories
+                ? existing.categories.slice(0)
+                : [];
+            for (let i = 0; i < incoming.categories.length; ++i) {
+              mergedCategories[offset + i] = incoming.categories[i];
+            }
+            const mergedResults = { ...incoming, categories: mergedCategories };
+            return mergedResults;
+          },
+        },
+        categorygenrespage: {
+          keyArgs: false,
+          merge(existing, incoming, { args: { offset = 0 } }) {
+            const mergedCategoryGenres =
+              existing && existing.categorygenres
+                ? existing.categorygenres.slice(0)
+                : [];
+            for (let i = 0; i < incoming.categorygenres.length; ++i) {
+              mergedCategoryGenres[offset + i] = incoming.categorygenres[i];
+            }
+            const mergedResults = {
+              ...incoming,
+              categorygenres: mergedCategoryGenres,
+            };
+            return mergedResults;
+          },
+        },
+        questionspage: {
+          keyArgs: false,
+          merge(existing, incoming, { args: { offset = 0 } }) {
             const mergedQuestions =
               existing && existing.questions ? existing.questions.slice(0) : [];
             for (let i = 0; i < incoming.questions.length; ++i) {
@@ -45,7 +71,6 @@ const cache = new InMemoryCache({
             return mergedResults;
           },
         },
-        categoriespage: offsetLimitPagination(),
       },
     },
   },
