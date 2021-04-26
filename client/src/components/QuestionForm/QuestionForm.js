@@ -406,6 +406,58 @@ const QuestionForm = (props) => {
                   errormessage={fieldErrors.answers}
                 />
               </Card.Content>
+              <Card.Content extra>
+                <div className="formButtonGroup">
+                  {!questionSubmitted ? (
+                    <>
+                      <Button
+                        color="green"
+                        size="large"
+                        loading={loading}
+                        onClick={formSubmitHandler}
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        color="grey"
+                        size="large"
+                        disabled={loading}
+                        onClick={props.history.goBack}
+                      >
+                        Cancel
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      {props.pageType === "edit" ? (
+                        <Button primary onClick={props.history.goBack}>
+                          Go Back
+                        </Button>
+                      ) : (
+                        <Button primary onClick={gotoQuestionsPageHandler}>
+                          See All Questions
+                        </Button>
+                      )}
+                      <Button primary onClick={clearFormHandler}>
+                        Add New Question
+                      </Button>
+                    </>
+                  )}
+                </div>
+                <FormSuccessMessage
+                  reveal={questionSubmitted}
+                  header={
+                    props.pageType === "edit"
+                      ? "Question Updated"
+                      : "Question Added"
+                  }
+                  content={
+                    props.pageType === "edit"
+                      ? "You've successfully updated the question."
+                      : "You've successfully added the question."
+                  }
+                />
+              </Card.Content>
             </Card>
           </Grid.Column>
 
@@ -437,55 +489,6 @@ const QuestionForm = (props) => {
             />
           </Grid.Column>
         </Grid>
-
-        <div className="formButtonGroup">
-          {!questionSubmitted ? (
-            <>
-              <Button
-                color="green"
-                size="large"
-                loading={loading}
-                onClick={formSubmitHandler}
-              >
-                Submit
-              </Button>
-              <Button
-                color="grey"
-                size="large"
-                disabled={loading}
-                onClick={props.history.goBack}
-              >
-                Cancel
-              </Button>
-            </>
-          ) : (
-            <>
-              {props.pageType === "edit" ? (
-                <Button primary onClick={props.history.goBack}>
-                  Go Back
-                </Button>
-              ) : (
-                <Button primary onClick={gotoQuestionsPageHandler}>
-                  See All Questions
-                </Button>
-              )}
-              <Button primary onClick={clearFormHandler}>
-                Add New Question
-              </Button>
-            </>
-          )}
-        </div>
-        <FormSuccessMessage
-          reveal={questionSubmitted}
-          header={
-            props.pageType === "edit" ? "Question Updated" : "Question Added"
-          }
-          content={
-            props.pageType === "edit"
-              ? "You've successfully updated the question."
-              : "You've successfully added the question."
-          }
-        />
       </Form>
     </>
   );

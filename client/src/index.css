@@ -26,3 +26,119 @@ body {
 .content-container {
   padding: 1em;
 }
+
+.blocklabel {
+  display: block;
+  padding-top: 0.5em;
+}
+
+.form-addcattype {
+  margin-top: 0.5em;
+}
+
+/* right align pagination in table footer */
+.tablePaginationColumn > .pagination,
+.tablePerPageColumn > form {
+  float: right;
+  clear: right;
+}
+
+.tablePerPageColumn .ui.form .inline.fields {
+  margin-bottom: 0;
+}
+
+.tableItemNumbers {
+  padding: 0.65em 0.5em 0.5em;
+}
+
+.tablename {
+  font-weight: 700;
+}
+
+.ui.card .extra {
+  height: 100%;
+}
+
+.formButtonGroup {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.5em 0 1em 0;
+}
+
+.categoryform {
+  margin-top: 1em;
+}
+
+.categoryFormSelectedImage {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0.75em;
+}
+
+.answerinput {
+  margin: 0.5em 0 1em !important;
+}
+
+.pushactionbuttonscontainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.questionstatusbutton {
+  margin-top: 0.5em !important;
+}
+
+.publishedstatuscell {
+  text-transform: capitalize;
+}
+
+.mobileColumn {
+  padding-top: 0.5em;
+}
+
+.answer {
+  padding-bottom: 1.5em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+}
+
+.answer:last-of-type {
+  border-bottom: 0px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/*override style that messes up question answers distribution*/
+.ui.card > .content {
+  flex-grow: 0 !important;
+}
+
+.stretchCard {
+  display: flex;
+  height: 100%;
+}
+
+.stretchCard .content:nth-of-type(1) {
+  flex-grow: 0;
+}
+
+.cardcentercontent {
+  margin: 0 auto !important;
+}
+
+@media screen and (min-width: 768px) {
+  .admincontent {
+    padding: 1.25em 2em 1em;
+    height: 100%;
+  }
+  .questionCard {
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mobileColumn {
+    padding-top: 0;
+  }
+}
