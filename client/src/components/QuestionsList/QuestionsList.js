@@ -47,8 +47,6 @@ const QuestionsList = (props) => {
     published: questionSearchCriteria.publishedstatus,
   };
 
-  console.log("offset", variables.offset);
-
   const { loading, data: { questionspage } = {}, fetchMore } = useQuery(
     QUERY_QUESTIONSPAGE,
     {
@@ -149,8 +147,6 @@ const QuestionsList = (props) => {
       JSON.stringify(questionSearchCriteriaVar())
     );
   };
-
-  console.log("data?", questionspage);
 
   const { match } = props;
 
