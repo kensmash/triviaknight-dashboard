@@ -58,9 +58,9 @@ const resolvers = {
       return { categories, groups };
     },
 
-    categoriespage: requiresAuth.createResolver(async (parent, {input}) => {
-      return catPageReponse(input);
-  
+    categoriespage: requiresAuth.createResolver(async (parent, { input }) => {
+      //return catPageReponse(input);
+
       const queryBuilder = (input) => {
         const query = {};
         if (input.name && input.name !== "") {
@@ -104,8 +104,6 @@ const resolvers = {
         categories: categoryResults,
       };
     }),
-
-     
 
     categorieswidget: async (parent, args) => {
       try {
