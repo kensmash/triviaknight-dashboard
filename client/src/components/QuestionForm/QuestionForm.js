@@ -12,6 +12,7 @@ import FormErrorMessage from "../FormMessages/FormErrorMessage";
 import FormSuccessMessage from "../FormMessages/FormSuccessMessage";
 //graphql
 import { gql, useQuery, useMutation } from "@apollo/client";
+import { addQuestionCriteriaVar } from "../../apollo";
 import QUERY_CLIENTADDQUESTIONCRITERIA from "../../apollo/queries/client-addQuestionCriteria";
 
 const QuestionForm = (props) => {
@@ -51,9 +52,6 @@ const QuestionForm = (props) => {
   );
 
   const [upsertQuestion, { loading }] = useMutation(MUTATION_UPSERTQUESTION);
-  const [updateAddQuestionCriteria] = useMutation(
-    MUTATION_UPDATEADDQUESTIONCRITERIA
-  );
 
   useEffect(() => {
     if (props.pageType === "edit" && pageType !== "Edit") {
@@ -75,17 +73,16 @@ const QuestionForm = (props) => {
         published: question.published,
         guessable: question.guessable,
       });
-      updateAddQuestionCriteria({
-        variables: {
-          category: props.question.category._id,
-        },
+      addQuestionCriteriaVar({
+        ...addQuestionCriteriaVar(),
+        category: props.question.category._id,
       });
     }
-  }, [props, updateAddQuestionCriteria, pageType]);
+  }, [props, addQuestionCriteria, pageType]);
 
   const gotoQuestionsPageHandler = () => {
     clearFormHandler();
-    setRedirect(true);
+    props.history.goBack();
   };
 
   const questionChangedHandler = (event) => {
@@ -162,11 +159,11 @@ const QuestionForm = (props) => {
   };
 
   const categorySelectHandler = (_event, data) => {
-    updateAddQuestionCriteria({
-      variables: {
-        category: data.value,
-      },
+    addQuestionCriteriaVar({
+      ...addQuestionCriteriaVar(),
+      category: data.value,
     });
+
     setFields({ ...fields, category: data.value });
     setFieldErrors({ ...fieldErrors, category: "" });
   };
@@ -407,6 +404,19 @@ const QuestionForm = (props) => {
                 />
               </Card.Content>
               <Card.Content extra>
+                <FormSuccessMessage
+                  reveal={questionSubmitted}
+                  header={
+                    props.pageType === "edit"
+                      ? "Question Updated"
+                      : "Question Added"
+                  }
+                  content={
+                    props.pageType === "edit"
+                      ? "You've successfully updated the question."
+                      : "You've successfully added the question."
+                  }
+                />
                 <div className="formButtonGroup">
                   {!questionSubmitted ? (
                     <>
@@ -444,19 +454,6 @@ const QuestionForm = (props) => {
                     </>
                   )}
                 </div>
-                <FormSuccessMessage
-                  reveal={questionSubmitted}
-                  header={
-                    props.pageType === "edit"
-                      ? "Question Updated"
-                      : "Question Added"
-                  }
-                  content={
-                    props.pageType === "edit"
-                      ? "You've successfully updated the question."
-                      : "You've successfully added the question."
-                  }
-                />
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -500,14 +497,6 @@ const MUTATION_UPSERTQUESTION = gql`
       _id
       question
       guessable
-    }
-  }
-`;
-
-const MUTATION_UPDATEADDQUESTIONCRITERIA = gql`
-  mutation updateAddQuestionCriteria($category: ID) {
-    updateAddQuestionCriteria(category: $category) @client {
-      category
     }
   }
 `;
