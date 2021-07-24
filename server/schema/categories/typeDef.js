@@ -8,8 +8,8 @@ const typeDef = gql`
     type: CategoryType
     iconname: String
     genres: [CategoryGenre]
-    questions: [Question]
-    followers: [User]
+    questions: Int
+    followers: Int
     createdAt: String
     updatedAt: String
     published: Boolean

@@ -42,12 +42,14 @@ categorySchema.virtual("questions", {
   ref: "question", // The model to use
   localField: "_id", // Find questions where `localField`
   foreignField: "category", // contains `foreignField`
+  count: true,
 });
 
 categorySchema.virtual("followers", {
   ref: "user", // The model to use
   localField: "_id", // Find questions where `localField`
   foreignField: "categories", // contains `foreignField`
+  count: true,
 });
 
 //Create the model class

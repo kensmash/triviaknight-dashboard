@@ -50,7 +50,7 @@ const CategoriesList = (props) => {
     variables,
     fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
-     // console.log(data.categoriespage);
+      // console.log(data.categoriespage);
       //change currently selected page when no records for page greater than 1
       if (
         !data.categoriespage.categories.length &&
@@ -270,7 +270,7 @@ const CategoriesList = (props) => {
                       )}
                       <Link to={`${match.url}/${cat._id}`}>{cat.name}</Link>
                     </Table.Cell>
-                    <Table.Cell>{cat.questions.length}</Table.Cell>
+                    <Table.Cell>{cat.questions}</Table.Cell>
 
                     <Table.Cell className="publishedstatuscell">
                       {cat.published ? "Published" : "Draft"}

@@ -26,10 +26,7 @@ export default gql`
         joustexclusive
         questactive
         nextquestactive
-        questions {
-          _id
-          difficulty
-        }
+        questions
       }
     }
   }
