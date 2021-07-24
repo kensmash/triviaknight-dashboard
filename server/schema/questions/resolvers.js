@@ -22,19 +22,19 @@ const resolvers = {
         ) => {
           const query = {};
 
-          if (question !== "") {
+          if (question && question !== "") {
             query.$text = { $search: question };
           }
-          if (category !== "") {
+          if (category && category !== "") {
             query.category = { $in: category };
           }
-          if (difficulty !== "") {
+          if (difficulty && difficulty !== "") {
             query.difficulty = { $eq: difficulty };
           }
-          if (type !== "") {
+          if (type && type !== "") {
             query.type = { $eq: type };
           }
-          if (published !== null) {
+          if (published && published !== null) {
             query.published = { $eq: published };
           }
 

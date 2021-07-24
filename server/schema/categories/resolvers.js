@@ -4,7 +4,7 @@ const CategoryGenre = require("../../models/CategoryGenre");
 const CategoryType = require("../../models/CategoryType");
 const CategoryGroup = require("../../models/CategoryGroup");
 //cat helper
-const { catListReponse } = require("../_helpers/helper-categories");
+const { catPageReponse } = require("../_helpers/helper-categories");
 //auth helpers
 const {
   requiresAuth,
@@ -58,19 +58,21 @@ const resolvers = {
       return { categories, groups };
     },
 
-    categoriespage: requiresAuth.createResolver(async (parent, { input }) => {
+    categoriespage: requiresAuth.createResolver(async (parent, {input}) => {
+      return catPageReponse(input);
+  
       const queryBuilder = (input) => {
         const query = {};
-        if (input.name !== "") {
+        if (input.name && input.name !== "") {
           query.$text = { $search: input.name };
         }
         if (input.type) {
           query.type = { $in: input.type };
         }
-        if (input.genres.length) {
+        if (input.genres && input.genres.length) {
           query.genres = { $all: input.genres };
         }
-        if (input.partycategory !== null) {
+        if (input.partycategory && input.partycategory !== null) {
           query.partycategory = { $eq: input.partycategory };
         }
         if (input.showasnew) {
@@ -102,6 +104,8 @@ const resolvers = {
         categories: categoryResults,
       };
     }),
+
+     
 
     categorieswidget: async (parent, args) => {
       try {

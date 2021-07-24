@@ -41,7 +41,7 @@ const resolvers = {
     ),
 
     joustgamestats: requiresAuth.createResolver(
-      (parent, { args }, { user }) => {
+      async (parent, { args }, { user }) => {
         return joustGameStats(user.id);
       }
     ),

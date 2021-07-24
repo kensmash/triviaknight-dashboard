@@ -16,7 +16,7 @@ import CatGameTypeSelect from "../CatGameTypeSelect/CatGameTypeSelect";
 import CatTypeSelect from "../CatTypeSelect/CatTypeSelect";
 import CatGenreSelect from "../CatGenreSelect/CatGenreSelect";
 //graphql
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { categorySearchCriteriaVar } from "../../apollo";
 import QUERY_CATEGORIESPAGE from "../../apollo/queries/categoriesPage";
 import QUERY_CLIENTCATEGORYSEARCH from "../../apollo/queries/client-categorySearchCriteria";
@@ -42,102 +42,93 @@ const CategoriesList = (props) => {
     },
   };
 
-  const { loading, data: { categoriespage } = {}, fetchMore } = useQuery(
-    QUERY_CATEGORIESPAGE,
-    {
-      variables,
-      fetchPolicy: "network-only",
-      onCompleted: (data) => {
-        //change currently selected page when no records for page greater than 1
-        if (
-          !data.categoriespage.categories.length &&
-          categorySearchCriteria.activePage > 1
-        ) {
-          updateCategorySearch({
-            variables: {
-              ...categorySearchCriteria,
-              activePage: 1,
-            },
-          });
-        }
-      },
-    }
-  );
-
-  const [updateCategorySearch] = useMutation(MUTATION_UPDATECATEGORYSEARCH);
+  const {
+    loading,
+    data: { categoriespage } = {},
+    fetchMore,
+  } = useQuery(QUERY_CATEGORIESPAGE, {
+    variables,
+    fetchPolicy: "cache-and-network",
+    onCompleted: (data) => {
+     // console.log(data.categoriespage);
+      //change currently selected page when no records for page greater than 1
+      if (
+        !data.categoriespage.categories.length &&
+        categorySearchCriteria.activePage > 1
+      ) {
+        categorySearchCriteriaVar({
+          ...categorySearchCriteriaVar(),
+          activePage: 1,
+        });
+        persistLocalData();
+      }
+    },
+  });
 
   const inputChangedHandler = (event) => {
-    updateCategorySearch({
-      variables: {
-        ...categorySearchCriteria,
-        name: event.target.value,
-      },
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      name: event.target.value,
     });
+    persistLocalData();
   };
 
   const clearCategorySearchHandler = () => {
-    updateCategorySearch({
-      variables: {
-        ...categorySearchCriteria,
-        name: "",
-      },
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      name: "",
     });
+    persistLocalData();
   };
 
   const catOptionsSelectHandler = (_e, data) => {
     if (data.value === "showasupdated") {
       console.log("updated");
-      updateCategorySearch({
-        variables: {
-          ...categorySearchCriteria,
-          showasupdated: true,
-          showasnew: false,
-        },
+      categorySearchCriteriaVar({
+        ...categorySearchCriteriaVar(),
+        showasupdated: true,
+        showasnew: false,
       });
+      persistLocalData();
     } else if (data.value === "showasnew") {
-      updateCategorySearch({
-        variables: {
-          ...categorySearchCriteria,
-          showasnew: true,
-          showasupdated: false,
-        },
+      categorySearchCriteriaVar({
+        ...categorySearchCriteriaVar(),
+        showasnew: true,
+        showasupdated: false,
       });
+      persistLocalData();
     } else {
-      updateCategorySearch({
-        variables: {
-          ...categorySearchCriteria,
-          showasupdated: false,
-          showasnew: false,
-        },
+      categorySearchCriteriaVar({
+        ...categorySearchCriteriaVar(),
+        showasupdated: false,
+        showasnew: false,
       });
+      persistLocalData();
     }
   };
 
   const catTypeSelectHandler = (_e, data) => {
-    updateCategorySearch({
-      variables: {
-        ...categorySearchCriteria,
-        type: data.value === "" ? null : data.value,
-      },
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      type: data.value === "" ? null : data.value,
     });
+    persistLocalData();
   };
 
   const catGameTypeSelectHandler = (_e, data) => {
-    updateCategorySearch({
-      variables: {
-        ...categorySearchCriteria,
-        partycategory: data.value === "" ? null : data.value,
-      },
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      partycategory: data.value === "" ? null : data.value,
     });
+    persistLocalData();
   };
 
   const catGenreSelectHandler = (_e, data) => {
-    updateCategorySearch({
-      variables: {
-        ...categorySearchCriteria,
-        genres: data.value,
-      },
+    categorySearchCriteriaVar({
+      ...categorySearchCriteriaVar(),
+      genres: data.value,
     });
+    persistLocalData();
   };
 
   const fetchMoreData = (activePage) => {
@@ -355,38 +346,6 @@ const CategoriesList = (props) => {
     </>
   );
 };
-
-const MUTATION_UPDATECATEGORYSEARCH = gql`
-  mutation updateCategorySearch(
-    $activePage: activePage
-    $limit: Int
-    $name: String
-    $type: ID
-    $genres: [ID]
-    $partycategory: Boolean
-    $showasnew: Boolean
-    $showasupdated: Boolean
-  ) {
-    updateCategorySearch(
-      activePage: $activePage
-      limit: $limit
-      name: $name
-      type: $type
-      genres: $genres
-      partycategory: $partycategory
-      showasnew: $showasnew
-      showasupdated: $showasupdated
-    ) @client {
-      activePage
-      limit
-      type
-      genres
-      partycategory
-      showasnew
-      showasupdated
-    }
-  }
-`;
 
 CategoriesList.propTypes = {
   history: PropTypes.object.isRequired,
