@@ -16,12 +16,13 @@ const keys = require("./config/keys");
 //schema
 const schema = require("./schema/schema");
 //scheduled jobs
-require("./jobs/jobs-categories");
+//uncomment when switching the official game server!!
+/*require("./jobs/jobs-categories");
 require("./jobs/jobs-quest");
 require("./jobs/jobs-joustgames");
 require("./jobs/jobs-siegegames");
 require("./jobs/jobs-roundtablegames");
-require("./jobs/jobs-pushnotifications");
+require("./jobs/jobs-pushnotifications");*/
 
 mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true,
