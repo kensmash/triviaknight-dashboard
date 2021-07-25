@@ -82,7 +82,7 @@ const QuestionForm = (props) => {
 
   const gotoQuestionsPageHandler = () => {
     clearFormHandler();
-    props.history.goBack();
+    setRedirect(true);
   };
 
   const questionChangedHandler = (event) => {
@@ -326,7 +326,7 @@ const QuestionForm = (props) => {
   };
 
   if (redirect) {
-    return <Redirect to="/admin/questions" />;
+    return <Redirect to="/questions" />;
   }
 
   return (

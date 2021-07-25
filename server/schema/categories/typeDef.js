@@ -9,7 +9,7 @@ const typeDef = gql`
     iconname: String
     genres: [CategoryGenre]
     questions: Int
-    followers: Int
+    followers: [User]
     createdAt: String
     updatedAt: String
     published: Boolean
