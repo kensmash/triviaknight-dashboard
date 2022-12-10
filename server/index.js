@@ -3,7 +3,7 @@ const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
 const session = require("express-session");
 const redis = require("redis"),
-  redisclient = redis.createClient(process.env.REDIS_TLS_URL);
+  redisclient = redis.createClient(process.env.REDIS_URL);
 const { RedisPubSub } = require("graphql-redis-subscriptions");
 const RedisStore = require("connect-redis")(session);
 const mongoose = require("mongoose");
@@ -35,13 +35,13 @@ mongoose.connect(keys.mongoURI, {
 const expo = new Expo();
 
 const PORT = process.env.PORT || 4000;
-const redis_uri = process.env.REDIS_TLS_URL && url.parse(process.env.REDIS_TLS_URL);
+const redis_uri = process.env.REDIS_URL && url.parse(process.env.REDIS_URL);
 //https://devcenter.heroku.com/articles/securing-heroku-redis
 const pubsub = new RedisPubSub({
   connection: {
-    host: process.env.REDIS_TLS_URL && redis_uri.hostname,
-    port: process.env.REDIS_TLS_URL ? Number(redis_uri.port) : 6379,
-    password: process.env.REDIS_TLS_URL && redis_uri.auth.split(":")[1],
+    host: process.env.REDIS_URL && redis_uri.hostname,
+    port: process.env.REDIS_URL ? Number(redis_uri.port) : 6379,
+    password: process.env.REDIS_URL && redis_uri.auth.split(":")[1],
     retry_strategy: (options) => {
       // reconnect after
       return Math.max(options.attempt * 100, 3000);
