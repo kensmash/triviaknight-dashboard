@@ -41,8 +41,6 @@ const resolvers = {
           return query;
         };
 
-        console.log("offset", offset);
-        console.log("limit", limit);
         try {
           const questions = await Promise.all([
             Question.find(

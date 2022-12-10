@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 const { userSessionIdPrefix } = require("../../constants");
 //const { sendPasswordCodeEmail } = require("./helper-sendgrid");
@@ -111,7 +111,6 @@ const tryLogin = async (
 
   try {
     user = await User.findOne({ email });
-
     if (!user) {
       //throw new Error("No user with that email");
       return {
