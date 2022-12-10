@@ -2,6 +2,9 @@
   "name": "triviaknight-dashboard",
   "version": "3.0.0",
   "description": "CMS and Dashboard for the Trivia Knight app.",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
